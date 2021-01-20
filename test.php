@@ -11,3 +11,5 @@ else
     $result = 'Not Ok';
 }
 echo $result;
+
+echo "test";
