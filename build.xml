@@ -109,7 +109,7 @@
         <!--<exec executable="${basedir}/vendor/bin/phpdox" dir="${basedir}/build" taskname="phpdox"/>-->
         <exec executable="php" failonerror="true" taskname="phpdox">
             <arg value="${basedir}/tools/phpdox" />
-	    <arg path="${basedir}/build/" />
+	    <arg path="${basedir}/" />
         </exec>
         <property name="phpdox.done" value="true"/>
     </target>
@@ -163,7 +163,7 @@
     <target name="phpunit" unless="phpunit.done" depends="prepare" description="Run unit tests with PHPUnit.">
         <exec executable="${basedir}/vendor/bin/phpunit.bat" resultproperty="result.phpunit" taskname="phpunit">
             <arg value="--configuration"/>
-            <arg path="${basedir}/build/phpunit.xml"/>
+            <arg path="${basedir}/phpunit.xml"/>
             <arg path="tests"/>
         </exec>
         <property name="phpunit.done" value="true"/>
@@ -173,7 +173,7 @@
             description="Run unit tests with PHPUnit without generating code coverage reports.">
         <exec executable="${basedir}/vendor/bin/phpunit" failonerror="true" taskname="phpunit">
             <arg value="--configuration"/>
-            <arg path="${basedir}/build/phpunit.xml"/>
+            <arg path="${basedir}/phpunit.xml"/>
             <arg path="tests"/>
             <arg value="--no-coverage"/>
         </exec>
