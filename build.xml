@@ -70,7 +70,7 @@
 
     <target name="phpcpd-ci" unless="phpcpd.done" depends="prepare"
             description="Find duplicate code using PHPCPD and log result in XML format. Intended for usage within a continuous integration environment.">
-        <exec executable="${basedir}/vendor/bin/phpcpd" taskname="phpcpd">
+        <exec executable="${basedir}/vendor/bin/phpcpd.bat" taskname="phpcpd">
             <arg value="--log-pmd"/>
             <arg path="${basedir}/build/logs/pmd-cpd.xml"/>
             <arg path="${basedir}/src"/>
@@ -106,7 +106,11 @@
 
     <target name="phpdox" unless="phpdox.done" depends="phploc-ci,phpcs-ci,phpmd-ci"
             description="Generate project documentation using phpDox.">
-        <exec executable="${basedir}/vendor/bin/phpdox" dir="${basedir}/build" taskname="phpdox"/>
+        <!--<exec executable="${basedir}/vendor/bin/phpdox" dir="${basedir}/build" taskname="phpdox"/>-->
+        <exec executable="php" failonerror="true" taskname="phpdox">
+            <arg value="${basedir}/build/tools/phpdox" />
+			<arg path="${basedir}/build/" />
+        </exec>
         <property name="phpdox.done" value="true"/>
     </target>
 
