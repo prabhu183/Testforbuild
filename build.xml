@@ -104,7 +104,7 @@
         <property name="phpcs.done" value="true"/>
     </target>
 
-    <target name="phpdox" unless="phpdox.done" depends="phploc-ci,phpcs-ci,phpmd-ci"
+    <!--<target name="phpdox" unless="phpdox.done" depends="phploc-ci,phpcs-ci,phpmd-ci"
             description="Generate project documentation using phpDox.">
         <!--<exec executable="${basedir}/vendor/bin/phpdox" dir="${basedir}/build" taskname="phpdox"/>-->
         <exec executable="php" failonerror="true" taskname="phpdox">
@@ -112,7 +112,7 @@
 	    <arg path="${basedir}/tools/phpdox" />
         </exec>
         <property name="phpdox.done" value="true"/>
-    </target>
+    </target>-->
 
     <target name="phploc" unless="phploc.done"
             description="Measure project size using PHPLOC and print human readable output. Intended for usage on the command line.">
@@ -174,7 +174,7 @@
         <exec executable="${basedir}/vendor/bin/phpunit" failonerror="true" taskname="phpunit">
             <arg value="--configuration"/>
             <arg path="${basedir}/phpunit.xml"/>
-            <arg path="${basedir}/tests/"/>
+            <!--<arg path="${basedir}/tests"/>-->
             <arg value="--no-coverage"/>
         </exec>
         <property name="phpunit.done" value="true"/>
