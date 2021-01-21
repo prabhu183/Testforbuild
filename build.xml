@@ -103,17 +103,6 @@
         </exec>
         <property name="phpcs.done" value="true"/>
     </target>
-	
-	<!--<exec executable="${basedir}/vendor/bin/phpdox" dir="${basedir}/build" taskname="phpdox"/>-->
-    <!--<target name="phpdox" unless="phpdox.done" depends="phploc-ci,phpcs-ci,phpmd-ci"
-            description="Generate project documentation using phpDox.">
-        
-        <exec executable="php" failonerror="true" taskname="phpdox">
-            <arg value="--php-dox"/>
-	    <arg path="${basedir}/tools/phpdox"/>
-        </exec>
-        <property name="phpdox.done" value="true"/>
-    </target>-->
 
     <target name="phploc" unless="phploc.done"
             description="Measure project size using PHPLOC and print human readable output. Intended for usage on the command line.">
