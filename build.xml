@@ -109,8 +109,8 @@
             description="Generate project documentation using phpDox.">
         
         <exec executable="php" failonerror="true" taskname="phpdox">
-            <arg value="--phpdox" />
-	    <arg path="${basedir}/tools/phpdox" />
+            <arg value="--php-dox"/>
+	    <arg path="${basedir}/tools/phpdox"/>
         </exec>
         <property name="phpdox.done" value="true"/>
     </target>-->
