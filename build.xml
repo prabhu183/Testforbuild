@@ -92,7 +92,7 @@
 
     <target name="phpcs-ci" unless="phpcs.done" depends="prepare"
             description="Find coding standard violations using PHP_CodeSniffer and log result in XML format. Intended for usage within a continuous integration environment.">
-        <exec executable="${basedir}/vendor/bin/phpcs" output="/dev/null" taskname="phpcs">
+        <exec executable="${basedir}/vendor/bin/phpcs.bat" output="/dev/null" taskname="phpcs">
             <arg value="--report=checkstyle"/>
             <arg value="--report-file=${basedir}/build/logs/checkstyle.xml"/>
             <arg value="--standard=PSR2"/>
@@ -146,7 +146,7 @@
 
     <target name="phpmd-ci" unless="phpmd.done" depends="prepare"
             description="Perform project mess detection using PHPMD and log result in XML format. Intended for usage within a continuous integration environment.">
-        <exec executable="${basedir}/vendor/bin/phpmd" taskname="phpmd">
+        <exec executable="${basedir}/vendor/bin/phpmd.bat" taskname="phpmd">
             <arg path="${basedir}/src"/>
             <arg value="xml"/>
             <arg path="${basedir}/build/phpmd.xml"/>
@@ -157,7 +157,7 @@
     </target>
 
     <target name="phpunit" unless="phpunit.done" depends="prepare" description="Run unit tests with PHPUnit.">
-        <exec executable="${basedir}/vendor/bin/phpunit" resultproperty="result.phpunit" taskname="phpunit">
+        <exec executable="${basedir}/vendor/bin/phpunit.bat" resultproperty="result.phpunit" taskname="phpunit">
             <arg value="--configuration"/>
             <arg path="${basedir}/build/phpunit.xml"/>
             <arg path="tests"/>
