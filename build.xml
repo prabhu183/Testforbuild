@@ -5,7 +5,7 @@
     <property name="pdepend" value="${basedir}/vendor/bin/pdepend"/>
     <property name="phpcpd" value="${basedir}/vendor/bin/phpcpd"/>
     <property name="phpcs" value="${basedir}/vendor/bin/phpcs"/>
-    <property name="phpdox" value="${basedir}/vendor/bin/phpdox"/>
+    
     <property name="phploc" value="${basedir}/vendor/bin/phploc"/>
     <property name="phpmd" value="${basedir}/vendor/bin/phpmd"/>
     <property name="phpunit" value="${basedir}/vendor/bin/phpunit"/>
@@ -15,7 +15,7 @@
         <delete dir="${basedir}/build/coverage"/>
         <delete dir="${basedir}/build/logs"/>
         <delete dir="${basedir}/build/pdepend"/>
-        <delete dir="${basedir}/build/phpdox"/>
+        
         <property name="clean.done" value="true"/>
     </target>
 
@@ -29,7 +29,7 @@
         </exec>
     </target>
 
-    <target name="full-build" depends="prepare,composer,static-analysis,phpunit,phpdox,-check-failure"
+    <target name="full-build" depends="prepare,composer,static-analysis,phpunit,-check-failure"
             description="Perform static analysis, run tests, and generate project documentation.">
         <echo message="Built"/>
     </target>
@@ -175,7 +175,7 @@
         <mkdir dir="${basedir}/build/coverage"/>
         <mkdir dir="${basedir}/build/logs"/>
         <mkdir dir="${basedir}/build/pdepend"/>
-        <mkdir dir="${basedir}/build/phpdox"/>
+        
         <property name="prepare.done" value="true"/>
     </target>
 
