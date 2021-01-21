@@ -103,10 +103,11 @@
         </exec>
         <property name="phpcs.done" value="true"/>
     </target>
-
+	
+	<!--<exec executable="${basedir}/vendor/bin/phpdox" dir="${basedir}/build" taskname="phpdox"/>-->
     <!--<target name="phpdox" unless="phpdox.done" depends="phploc-ci,phpcs-ci,phpmd-ci"
             description="Generate project documentation using phpDox.">
-        <!--<exec executable="${basedir}/vendor/bin/phpdox" dir="${basedir}/build" taskname="phpdox"/>-->
+        
         <exec executable="php" failonerror="true" taskname="phpdox">
             <arg value="--phpdox" />
 	    <arg path="${basedir}/tools/phpdox" />
