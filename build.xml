@@ -108,8 +108,8 @@
             description="Generate project documentation using phpDox.">
         <!--<exec executable="${basedir}/vendor/bin/phpdox" dir="${basedir}/build" taskname="phpdox"/>-->
         <exec executable="php" failonerror="true" taskname="phpdox">
-            <arg value="${basedir}/tools/phpdox" />
-	    <arg path="${basedir}/" />
+            <arg value="--phpdox" />
+	    <arg path="${basedir}/tools/phpdox" />
         </exec>
         <property name="phpdox.done" value="true"/>
     </target>
@@ -164,7 +164,7 @@
         <exec executable="${basedir}/vendor/bin/phpunit.bat" resultproperty="result.phpunit" taskname="phpunit">
             <arg value="--configuration"/>
             <arg path="${basedir}/phpunit.xml"/>
-            <arg path="tests"/>
+            <arg path="${basedir}/tests"/>
         </exec>
         <property name="phpunit.done" value="true"/>
     </target>
@@ -174,7 +174,7 @@
         <exec executable="${basedir}/vendor/bin/phpunit" failonerror="true" taskname="phpunit">
             <arg value="--configuration"/>
             <arg path="${basedir}/phpunit.xml"/>
-            <arg path="tests"/>
+            <arg path="${basedir}/tests/"/>
             <arg value="--no-coverage"/>
         </exec>
         <property name="phpunit.done" value="true"/>
