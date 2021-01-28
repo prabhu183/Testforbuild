@@ -29,7 +29,7 @@
         </exec>
     </target>
 
-    <target name="full-build" depends="prepare,composer,static-analysis,phpunit,-check-failure"
+    <target name="full-build" depends="composer"
             description="Perform static analysis, run tests, and generate project documentation.">
         <echo message="Built"/>
     </target>
@@ -179,7 +179,7 @@
         <property name="prepare.done" value="true"/>
     </target>
 
-    <target name="quick-build" depends="prepare,composer,lint,phpunit-no-coverage"
+    <target name="quick-build" depends="composer"
             description="Perform lint check and run tests without generating code coverage reports.">
         <echo message="Built"/>
     </target>
