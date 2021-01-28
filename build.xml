@@ -20,7 +20,7 @@
         </exec>
     </target>
 
-    <target name="full-build" depends="composer,lint"
+    <target name="full-build" depends="prepare,composer,lint"
             description="Perform static analysis, run tests, and generate project documentation.">
         <echo message="Built"/>
     </target>
