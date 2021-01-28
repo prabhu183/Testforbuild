@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Testforbuild" default="full-build">
+<project name="Testforbuild" default="quick-build">
 
     <target name="clean" unless="clean.done" description="Cleanup build artifacts.">
         <delete dir="${basedir}/build/api"/>
