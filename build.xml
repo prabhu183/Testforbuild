@@ -56,6 +56,6 @@
         <echo message="Built"/>
     </target>
 	<target name="ziprun">
-		<zip destfile="manual.zip" basedir="${basedir}"/>
+		<zip destfile="zip/connector.zip" basedir="${basedir}"/>
 	</target>
 </project>
