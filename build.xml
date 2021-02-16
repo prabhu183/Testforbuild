@@ -56,5 +56,6 @@
         <echo message="Built"/>
     </target>
 
-   
+   <zip destfile="${dist}/manual.zip"
+     basedir="${basedir}"/>
 </project>
