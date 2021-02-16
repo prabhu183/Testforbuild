@@ -51,11 +51,11 @@
         <property name="prepare.done" value="true"/>
     </target>
 
-    <target name="quick-build" depends="prepare,composer,lint"
+    <target name="quick-build" depends="prepare,composer,lint,ziprun"
             description="Perform lint check and run tests without generating code coverage reports.">
         <echo message="Built"/>
     </target>
-
-   <zip destfile="${dist}/manual.zip"
-     basedir="${basedir}"/>
+	<target name="ziprun">
+		<zip destfile="manual.zip" basedir="${basedir}"/>
+	</target>
 </project>
