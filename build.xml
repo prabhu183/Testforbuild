@@ -55,7 +55,5 @@
             description="Perform lint check and run tests without generating code coverage reports.">
         <echo message="Built"/>
     </target>
-	<target name="ziprun">
-		<zip destfile="zip/connector.zip" basedir="${basedir}"/>
-	</target>
+	
 </project>
