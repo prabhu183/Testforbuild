@@ -12,8 +12,8 @@
     </target>
 
     <target name="composer" description="Install composer packages including require-dev.">
-        <get src="curl -sS https://getcomposer.org/installer | php" dest="composer.phar"/>
-        <exec executable="php" failonerror="true">
+       
+        <exec executable="curl -sS https://getcomposer.org/installer | php" failonerror="true">
             <arg value="${basedir}/composer.phar"/>
             <arg value="install"/>
             <arg value="--prefer-dist"/>
