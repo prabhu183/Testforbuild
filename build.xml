@@ -6,14 +6,13 @@
         <delete dir="${basedir}/build/coverage"/>
         <delete dir="${basedir}/build/logs"/>
         <delete dir="${basedir}/build/pdepend"/>
-        
-        
+        <delete file="${basedir}/manual.zip" />
         <property name="clean.done" value="true"/>
     </target>
 
     <target name="composer" description="Install composer packages including require-dev.">
-       
-        <exec executable="curl -sS https://getcomposer.org/installer | php" failonerror="true">
+        <get src="https://getcomposer.org/download/2.0.8/composer.phar" dest="composer.phar"/>
+        <exec executable="php" failonerror="true">
             <arg value="${basedir}/composer.phar"/>
             <arg value="install"/>
             <arg value="--prefer-dist"/>
@@ -51,9 +50,12 @@
         <property name="prepare.done" value="true"/>
     </target>
 
-    <target name="quick-build" depends="prepare,composer,lint"
+    <target name="quick-build" depends="prepare,composer,lint,ziprun"
             description="Perform lint check and run tests without generating code coverage reports.">
         <echo message="Built"/>
     </target>
+	<target name="ziprun">
+		<zip destfile="zip/connector.zip" basedir="${basedir}"/>
+	</target>
 	
 </project>
