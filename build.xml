@@ -71,7 +71,7 @@
             <arg value="-l"/>
             <fileset dir="${basedir}/">
                 <include name="**/*.php"/>
-		<exclude name="vendor" />
+		<exclude name="vendor/**" />
                 <!-- modified/ -->
             </fileset>
         </apply>
