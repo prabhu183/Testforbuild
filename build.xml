@@ -87,7 +87,7 @@
         <property name="prepare.done" value="true"/>
     </target>
 
-    <target name="quick-build" depends="prepare,build-composer-install,lint"
+    <target name="quick-build" depends="prepare,build-composer-install,lint,ziprun"
             description="Perform lint check and run tests without generating code coverage reports.">
         <echo message="Built"/>
     </target>
