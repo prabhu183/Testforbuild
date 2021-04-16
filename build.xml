@@ -2,19 +2,18 @@
 <project name="Testforbuild" default="quick-build" xmlns:sonar="antlib:org.sonar.ant">
 	
 	<!-- ========= Define the main properties of this project ========= -->
-	<property name="src.dir" value="src" />
-	<property name="build.dir" value="target" />
-	<property name="classes.dir" value="${build.dir}/classes" />
-
+	<property name="src.dir" value="${basedir}" />
+	
 	<!-- Define the SonarQube global properties (the most usual way is to pass these properties via the command line) -->
 	<property name="sonar.host.url" value="http://localhost:9000" />
+	<property name="sonar.login" value="1f670291d58ae6508e29199d9c1b8f0c432da20a" />
+	<property name="sonar.password" value="" />
 
 	<!-- Define the Sonar properties -->
-	<property name="sonar.projectKey" value="org.sonarqube:TestSonarBuildKey" />
+	<property name="sonar.projectKey" value="org.sonarqube:TestSonarBuild" />
 	<property name="sonar.projectName" value="Test Sonar Build" />
 	<property name="sonar.projectVersion" value="1.0" />
-	<property name="sonar.sources" value="src" />
-	<property name="sonar.binaries" value="target" />
+	<property name="sonar.sources" value="${build.dir}" />
 	<property name="sonar.sourceEncoding" value="UTF-8" />
 	
 
@@ -24,8 +23,7 @@
         <delete dir="${basedir}/build/logs"/>
         <delete dir="${basedir}/build/pdepend"/>
         <delete dir="${basedir}/zip/connector.zip"/>
-		<delete dir="${build.dir}" />
-        <!--<delete dir="${basedir}/zip/connector.zip"/>-->     
+		<!--<delete dir="${basedir}/zip/connector.zip"/>-->     
         <property name="clean.done" value="true"/>
     </target>
     
@@ -94,7 +92,7 @@
             <arg value="-l"/>
             <fileset dir="${basedir}/">
                 <include name="**/*.php"/>
-		<exclude name="vendor/**" />
+				<exclude name="vendor/**" />
                 <!-- modified/ -->
             </fileset>
         </apply>
@@ -106,18 +104,13 @@
         <mkdir dir="${basedir}/build/api"/>
         <mkdir dir="${basedir}/build/coverage"/>
         <mkdir dir="${basedir}/build/logs"/>
-        <mkdir dir="${basedir}/build/pdepend"/>
-        
+        <mkdir dir="${basedir}/build/pdepend"/>        
         <property name="prepare.done" value="true"/>
-    </target>
-	
-	<target name="init">
-		<mkdir dir="${build.dir}" />
-		<mkdir dir="${classes.dir}" />
-	</target>
+    </target>	
 
-	<target name="compile" depends="init">
-		<javac srcdir="${src.dir}" destdir="${classes.dir}" fork="true" debug="true" includeAntRuntime="false" />
+
+	<target name="compile">
+		<javac srcdir="${src.dir}" fork="true" debug="true" includeAntRuntime="false" />
 	</target>
 	
 	<!-- ========= Define SonarQube Scanner for Ant Target ========= -->
