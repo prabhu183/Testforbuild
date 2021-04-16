@@ -92,9 +92,9 @@
     <target name="lint" unless="lint.done" description="Perform syntax check of PHP sourcecode files.">
         <apply executable="php" failonerror="true" taskname="lint">
             <arg value="-l"/>
-            <fileset dir="${basedir}/application">
+            <fileset dir="${basedir}/">
                 <include name="**/*.php"/>
-				<exclude name="vendor/**" />
+		<exclude name="vendor/**" />
                 <!-- modified/ -->
             </fileset>
         </apply>
