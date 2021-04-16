@@ -13,7 +13,7 @@
 	<property name="sonar.projectKey" value="org.sonarqube:TestSonarBuild" />
 	<property name="sonar.projectName" value="Test Sonar Build" />
 	<property name="sonar.projectVersion" value="1.0" />
-	<property name="sonar.sources" value="${build.dir}" />
+	<property name="sonar.sources" value="${src.dir}" />
 	<property name="sonar.sourceEncoding" value="UTF-8" />
 	
 
