@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Testforbuild" default="quick-build">
+<project name="Testforbuild" default="quick-build" xmlns:sonar="antlib:org.sonar.ant>
 	
 	<!-- ========= Define the main properties of this project ========= -->
 	<property name="src.dir" value="src" />
