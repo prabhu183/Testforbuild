@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Testforbuild" default="quick-build">
+	
+	<!-- ========= Define the main properties of this project ========= -->
+	<property name="src.dir" value="src" />
+	<property name="build.dir" value="target" />
+	<property name="classes.dir" value="${build.dir}/classes" />
+
+	<!-- Define the SonarQube global properties (the most usual way is to pass these properties via the command line) -->
+	<property name="sonar.host.url" value="http://localhost:9000" />
+
+	<!-- Define the Sonar properties -->
+	<property name="sonar.projectKey" value="org.sonarqube:TestSonarBuildKey" />
+	<property name="sonar.projectName" value="Test Sonar Build" />
+	<property name="sonar.projectVersion" value="1.0" />
+	<property name="sonar.sources" value="src" />
+	<property name="sonar.binaries" value="target" />
+	<property name="sonar.sourceEncoding" value="UTF-8" />
+	
 
     <target name="clean" unless="clean.done" description="Cleanup build artifacts.">
         <delete dir="${basedir}/build/api"/>
         <delete dir="${basedir}/build/coverage"/>
         <delete dir="${basedir}/build/logs"/>
         <delete dir="${basedir}/build/pdepend"/>
-        <delete dir="${basedir}/zip/connector.zip"/>        
+        <delete dir="${basedir}/zip/connector.zip"/>
+		<delete dir="${build.dir}" />
+        <!--<delete dir="${basedir}/zip/connector.zip"/>-->     
         <property name="clean.done" value="true"/>
     </target>
-    
-    
-    
     
     <!--
         Composer build dependencies
@@ -20,27 +36,34 @@
         <available file="${basedir}/composer.phar" property="composer.binary.present"/>
     </target>
 
-    <!-- Download composer -->
+    <!-- Download composer
+    <exec executable="bash" failonerror="true">
+            <arg value="-c" />
+            <arg value="curl -s https://getcomposer.org/installer | php" />
+        </exec>
+    -->
     <target name="install-composer-binary" depends="check-composer-binary"  unless="composer.binary.present">
-        
-        <property name="composer.noselfupdate" value="true"/>
-        <get src="https://getcomposer.org/download/2.0.8/composer.phar" dest="composer.phar"/>
+    	<exec executable="bash" failonerror="true">
+            <arg value="-c" />
+            <arg value="curl -s https://getcomposer.org/installer | php" />
+        </exec>
+        <!-- <property name="composer.noselfupdate" value="true"/>
+        <get src="https://getcomposer.org/download/2.0.8/composer.phar" dest="composer.phar"/> -->
     </target>
 
-    <!-- selfupdate composer
-    <target name="update-composer-binary" depends="install-composer-binary">
+    <!-- selfupdate composer-->
+    <!-- <target name="update-composer-binary" depends="install-composer-binary">
         <exec executable="php">
             <arg value="composer.phar" />
             <arg value="update" />
             <arg value="no-interaction" />
         </exec>
-    </target>-->
+    </target> -->
 
     <target name="composer-selfupdate" depends="install-composer-binary" unless="composer.noselfupdate">
         <exec executable="php">
           <arg value="composer.phar" />
           <arg value="self-update"/>
-          <arg value="2.0.8"/>
         </exec>
       </target>
 
@@ -69,9 +92,9 @@
     <target name="lint" unless="lint.done" description="Perform syntax check of PHP sourcecode files.">
         <apply executable="php" failonerror="true" taskname="lint">
             <arg value="-l"/>
-            <fileset dir="${basedir}/">
+            <fileset dir="${basedir}/application">
                 <include name="**/*.php"/>
-		<exclude name="vendor/**" />
+				<exclude name="vendor/**" />
                 <!-- modified/ -->
             </fileset>
         </apply>
@@ -87,12 +110,35 @@
         
         <property name="prepare.done" value="true"/>
     </target>
+	
+	<target name="init">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${classes.dir}" />
+	</target>
 
-    <target name="quick-build" depends="prepare,build-composer-install,lint,ziprun"
+	<target name="compile" depends="init">
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" fork="true" debug="true" includeAntRuntime="false" />
+	</target>
+	
+	<!-- ========= Define SonarQube Scanner for Ant Target ========= -->
+	<target name="sonar" depends="compile">
+		<taskdef uri="antlib:org.sonar.ant" resource="org/sonar/ant/antlib.xml">
+			<!-- Update the following line, or put the "sonar-ant-task-*.jar" file in your "$HOME/.ant/lib" folder -->
+			<classpath path="C:\sonarant\sonarqube-ant-task-2.7.0.1612.jar" />
+		</taskdef>
+		
+		<!-- Execute SonarQube Scanner for Ant Analysis -->
+		<sonar:sonar />
+	</target>
+
+    <target name="quick-build" depends="prepare,build-composer-install,lint,compile,sonar"
             description="Perform lint check and run tests without generating code coverage reports.">
         <echo message="Built"/>
     </target>
-	<target name="ziprun">
+	
+	<!--<target name="ziprun">
 		<zip destfile="zip/connector.zip" basedir="${basedir}"/>
-	</target>   
+	</target>-->
+
+   
 </project>
