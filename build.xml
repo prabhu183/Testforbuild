@@ -16,7 +16,6 @@
 	<property name="sonar.sources" value="${src.dir}" />
 	<property name="sonar.sourceEncoding" value="UTF-8" />
 	<property name="sonar.scm.exclusions.disabled" value="true"/>
-	<property name="sonar.language" value="php" />
 
     <target name="clean" unless="clean.done" description="Cleanup build artifacts.">
         <delete dir="${basedir}/build/api"/>
