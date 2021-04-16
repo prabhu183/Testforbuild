@@ -15,6 +15,7 @@
 	<property name="sonar.projectVersion" value="1.0" />
 	<property name="sonar.sources" value="${src.dir}" />
 	<property name="sonar.sourceEncoding" value="UTF-8" />
+	<property name="sonar.scm.exclusions.disabled" value="true"/>
 	<property name="sonar.scm.disabled" value="true"/>
 
     <target name="clean" unless="clean.done" description="Cleanup build artifacts.">
