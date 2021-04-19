@@ -1,6 +1,6 @@
 {
     "require": {
-        "php-amqplib/php-amqplib": "dev-connect-to-multiple-hosts",
+        "php-amqplib/php-amqplib": "v3.0.0",
         "phpmailer/phpmailer": "^6.0"
     }
 }
