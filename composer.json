@@ -1,5 +1,6 @@
 {
     "require": {
-        "phpmailer/phpmailer": "^6.0"        
+        "php-amqplib/php-amqplib": "dev-connect-to-multiple-hosts",
+        "phpmailer/phpmailer": "^6.0"
     }
 }
