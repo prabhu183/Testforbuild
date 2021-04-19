@@ -42,12 +42,12 @@
         </exec>
     -->
     <target name="install-composer-binary" depends="check-composer-binary"  unless="composer.binary.present">
-    	<!--<exec executable="bash" failonerror="true">
+    	<exec executable="bash" failonerror="true">
             <arg value="-c" />
             <arg value="curl -s https://getcomposer.org/installer | php" />
-        </exec>-->
-        <property name="composer.noselfupdate" value="true"/>
-        <get src="https://getcomposer.org/download/2.0.8/composer.phar" dest="composer.phar"/>
+        </exec>
+        <!--<property name="composer.noselfupdate" value="true"/>
+        <get src="https://getcomposer.org/download/2.0.8/composer.phar" dest="composer.phar"/>-->
     </target>
 
     <!-- selfupdate composer-->
