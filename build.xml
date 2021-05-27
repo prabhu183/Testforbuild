@@ -57,7 +57,7 @@
     <target name="lint" unless="lint.done" description="Perform syntax check of PHP sourcecode files.">
         <apply executable="php" failonerror="true" taskname="lint">
             <arg value="-l"/>
-            <fileset dir="${basedir}/application">
+            <fileset dir="${basedir}/src">
                 <include name="**/*.php"/>
                 <!-- modified/ -->
             </fileset>
