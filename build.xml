@@ -6,7 +6,7 @@
 	
 	<!-- Define the SonarQube global properties (the most usual way is to pass these properties via the command line) -->
 	<property name="sonar.host.url" value="http://localhost:9000" />
-	<property name="sonar.login" value="1f670291d58ae6508e29199d9c1b8f0c432da20a" />
+	<property name="sonar.login" value="f33451b680cf87a35b337200a92b19b6ec7cda6f" />
 	<property name="sonar.password" value="" />
 
 	<!-- Define the Sonar properties -->
